@@ -331,7 +331,8 @@ fn generate_bindings<P: AsRef<Path>>(include_path: &P) -> Result<()> {
 }
 
 fn main() {
-    let source_path = PathBuf::from("libuv");
+    let mut source_path = PathBuf::from(&env::var("CARGO_MANIFEST_DIR").unwrap());
+    source_path.push("libuv");
     let mut include_path = source_path.join("include");
 
     // try pkg-config first
